@@ -1,6 +1,11 @@
 module.exports = {
     root: true,
     parser: '@babel/eslint-parser',
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
     env: {
         node: true,
         browser: true,
@@ -10,7 +15,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:prettier/recommended',
+        'plugin:@next/next/recommended',
+        'prettier',
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -18,8 +24,10 @@ module.exports = {
         },
         ecmaVersion: 2020,
         requireConfigFile: false,
+        babelOptions: {
+            presets: ['@babel/preset-react'],
+        },
     },
-    plugins: ['react', '@next/eslint-plugin-next', 'prettier'],
     rules: {
         'import/prefer-default-export': 0,
         'no-console': 'warn',
@@ -39,10 +47,5 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         'linebreak-style': ['error', 'unix'],
         semi: ['error', 'never'],
-        'prettier/prettier': [
-            'error',
-            { endOfLine: 'auto' },
-            { usePrettierrc: true },
-        ],
     },
 }
